@@ -144,7 +144,14 @@ class Profile(_Model):
 
 
 class ExternalIdentity(_Model):
-    """The user's identity at your identity provider (``subject`` and ``username``)."""
+    """The user's identity at your identity provider (``subject`` and ``username``).
+
+    Required on every user of a federated integration (``KEYCLOAK_FEDERATED``): the SmartSearch user is
+    linked to this account, which must already exist there. Must be absent for an invite integration
+    (``KEYCLOAK_INVITE``): the user gets an email to set a SmartSearch password. Otherwise the item fails
+    with :data:`~smartsearch_ai.errors.EXTERNAL_IDENTITY_REQUIRED` or
+    :data:`~smartsearch_ai.errors.EXTERNAL_IDENTITY_NOT_SUPPORTED`.
+    """
 
     subject: str
     username: str
@@ -388,7 +395,12 @@ class Users:
     Jobs run asynchronously: :meth:`submit_job` returns the accepted job, then poll :meth:`get_job`.
     Mutating calls take an ``idempotency_key``: reuse it to retry the same request safely.
     Failures raise :class:`~smartsearch_ai.errors.SmartSearchError` subclasses with the server code
-    (for example ``INTEGRATION_NOT_FOUND``) and ``retryable``.
+    (for example :data:`~smartsearch_ai.errors.INTEGRATION_NOT_FOUND`) and ``retryable``.
+
+    Identity jobs name an integration that an administrator set up in SmartSearch (this SDK cannot create
+    one). Users are always created in SmartSearch's sign-in realm; an invite integration emails each user
+    to set a password (send no ``external_identity``), a federated one links each user to their existing
+    account at your identity provider (``external_identity`` required).
     """
 
     def __init__(self, transport: _Transport) -> None:

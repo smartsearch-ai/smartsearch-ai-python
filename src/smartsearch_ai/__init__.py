@@ -6,6 +6,9 @@ Start with :class:`SmartSearchAi`.
 from ._client import SmartSearchAi
 from ._version import __version__
 from .errors import (
+    EXTERNAL_IDENTITY_NOT_SUPPORTED,
+    EXTERNAL_IDENTITY_REQUIRED,
+    INTEGRATION_NOT_FOUND,
     AuthenticationError,
     ConflictError,
     NotFoundError,
@@ -72,7 +75,8 @@ __all__ = [
     "__version__", "SmartSearchAi",
     # errors
     "SmartSearchError", "AuthenticationError", "PermissionDeniedError", "NotFoundError", "ConflictError",
-    "RequestTimeoutError", "TransportError",
+    "RequestTimeoutError", "TransportError", "INTEGRATION_NOT_FOUND", "EXTERNAL_IDENTITY_REQUIRED",
+    "EXTERNAL_IDENTITY_NOT_SUPPORTED",
     # search
     "ProjectSearch", "SearchQuery", "SearchResult", "Filter", "AnyOf", "Sort", "SortOrder", "TermBoost",
     "TermsAgg", "CardinalityAgg", "NeuralMode", "Normalization", "Combination",

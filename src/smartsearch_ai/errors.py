@@ -83,6 +83,19 @@ class TransportError(SmartSearchError):
     """The request could not be sent or the connection failed (``status_code`` 0)."""
 
 
+# Named provisioning codes: ``SmartSearchError.code`` of a failed call, and the ``code`` of a failed job
+# item's ``failure`` stage (``Users.list_job_items``), where identity checks run per user.
+
+INTEGRATION_NOT_FOUND = "INTEGRATION_NOT_FOUND"
+"""No integration with this ID in the scope (HTTP 404). An administrator creates integrations."""
+
+EXTERNAL_IDENTITY_REQUIRED = "EXTERNAL_IDENTITY_REQUIRED"
+"""Federated integration: the user was sent without ``external_identity`` (subject + username)."""
+
+EXTERNAL_IDENTITY_NOT_SUPPORTED = "EXTERNAL_IDENTITY_NOT_SUPPORTED"
+"""Invite integration: the user was sent with an ``external_identity``; invite users carry none."""
+
+
 def error_type(status_code: int) -> type[SmartSearchError]:
     return {
         401: AuthenticationError,
@@ -100,4 +113,7 @@ __all__ = [
     "ConflictError",
     "RequestTimeoutError",
     "TransportError",
+    "INTEGRATION_NOT_FOUND",
+    "EXTERNAL_IDENTITY_REQUIRED",
+    "EXTERNAL_IDENTITY_NOT_SUPPORTED",
 ]
