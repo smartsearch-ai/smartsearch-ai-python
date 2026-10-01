@@ -1,0 +1,46 @@
+SmartSearch AI SDK and Examples License
+
+Copyright (c) 2026 Weblink Technologies LLC. All rights reserved.
+
+This license covers the source code, documentation and other files in this
+repository (the "Software"). "SmartSearch AI" means the SmartSearch AI services
+provided by Weblink Technologies LLC ("Weblink"). "Account" means a SmartSearch AI
+account or agreement you hold with Weblink.
+
+1. Permission. While you hold an active Account, Weblink grants you a
+   non-exclusive, non-transferable, non-sublicensable, royalty-free license to
+   use, copy and modify the Software solely to build, test and run your own
+   applications that connect to SmartSearch AI.
+
+2. Your applications. You may include the Software, or code derived from it, in
+   your own applications that connect to SmartSearch AI, and run those
+   applications for your own organization or to provide your services.
+
+3. No redistribution. You may not distribute, publish, sell, lease or
+   sublicense the Software or any modified version of it on its own, as a
+   library, as a template, or in source form, to anyone outside your
+   organization.
+
+4. Restrictions. You may not use the Software (a) with any service other than
+   SmartSearch AI; (b) to build or support a product that competes with
+   SmartSearch AI; or (c) to probe, reverse engineer or bypass the security or
+   usage limits of SmartSearch AI.
+
+5. Ownership. Weblink keeps all rights, title and interest in the Software and
+   in SmartSearch AI. No rights are granted except those stated here.
+
+6. No warranty. The Software is provided "AS IS", without warranty of any kind,
+   express or implied, including merchantability, fitness for a particular
+   purpose and non-infringement.
+
+7. Limitation of liability. To the maximum extent permitted by law, Weblink is
+   not liable for any claim, damages or other liability arising from or
+   related to the Software or its use.
+
+8. Termination. This license ends automatically when your Account ends or when
+   you breach these terms. You must then stop using the Software and delete
+   your copies.
+
+9. Governing law. This license is governed by the laws of the State of Texas, United States.
+
+Questions about this license: production@smartsearchtools.com

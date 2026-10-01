@@ -1,0 +1,985 @@
+{
+  "search_queries" : {
+    "minimal" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "shoes"
+    },
+    "defaults_only" : {
+      "from" : 0,
+      "size" : 10
+    },
+    "every_public_method" : {
+      "from" : 10,
+      "size" : 20,
+      "q" : "trail shoes",
+      "fields" : [ "title", "body" ],
+      "response_fields" : [ "id", "title" ],
+      "sorts" : [ {
+        "field" : "price",
+        "order" : "asc"
+      }, {
+        "field" : "rating",
+        "order" : "desc"
+      } ],
+      "filters" : {
+        "all" : [ {
+          "search_type" : "term",
+          "field" : "brand",
+          "value" : "acme"
+        }, {
+          "any" : [ {
+            "search_type" : "term",
+            "field" : "color",
+            "value" : "red"
+          }, {
+            "search_type" : "term",
+            "field" : "color",
+            "value" : "blue"
+          } ]
+        }, {
+          "search_type" : "match",
+          "field" : "title",
+          "value" : "running"
+        }, {
+          "search_type" : "match_phrase",
+          "field" : "title",
+          "value" : "trail shoe"
+        }, {
+          "search_type" : "exists",
+          "field" : "stock"
+        }, {
+          "search_type" : "range",
+          "field" : "price",
+          "condition" : {
+            "gte" : 10,
+            "lte" : 100
+          }
+        }, {
+          "search_type" : "range",
+          "field" : "weight",
+          "condition" : {
+            "gt" : 0.5,
+            "lt" : 9.5
+          }
+        }, {
+          "any" : [ {
+            "search_type" : "term",
+            "field" : "x",
+            "value" : "1"
+          }, {
+            "search_type" : "term",
+            "field" : "y",
+            "value" : "2"
+          }, {
+            "search_type" : "term",
+            "field" : "y",
+            "value" : "3"
+          }, {
+            "search_type" : "match",
+            "field" : "z",
+            "value" : "4"
+          }, {
+            "search_type" : "match_phrase",
+            "field" : "z",
+            "value" : "5 6"
+          }, {
+            "search_type" : "exists",
+            "field" : "w"
+          } ]
+        } ],
+        "not" : [ {
+          "search_type" : "term",
+          "field" : "status",
+          "value" : "retired"
+        }, {
+          "search_type" : "term",
+          "field" : "tag",
+          "value" : "a"
+        }, {
+          "search_type" : "term",
+          "field" : "tag",
+          "value" : "b"
+        }, {
+          "search_type" : "match",
+          "field" : "title",
+          "value" : "kids"
+        }, {
+          "search_type" : "match_phrase",
+          "field" : "title",
+          "value" : "gift card"
+        }, {
+          "search_type" : "exists",
+          "field" : "recalled"
+        }, {
+          "search_type" : "range",
+          "field" : "price",
+          "condition" : {
+            "gt" : 1000
+          }
+        } ]
+      },
+      "boosts" : [ {
+        "search_type" : "term",
+        "field" : "brand",
+        "value" : "acme",
+        "weight" : 2.5
+      } ],
+      "aggs" : [ {
+        "type" : "terms",
+        "name" : "brands",
+        "field" : "brand"
+      }, {
+        "type" : "terms",
+        "name" : "colors",
+        "field" : "color",
+        "size" : 25
+      }, {
+        "type" : "cardinality",
+        "name" : "skus",
+        "field" : "sku"
+      }, {
+        "type" : "cardinality",
+        "name" : "skus2",
+        "field" : "sku",
+        "precisionThreshold" : 3000
+      } ],
+      "ssapi_flags" : {
+        "highlight_enabled" : true,
+        "wild_card_search" : true,
+        "auto_correct" : false,
+        "trim_query" : true,
+        "remove_special_chars" : true,
+        "query_expansion_enable" : false,
+        "precision" : 11,
+        "neural_mode" : "EXACT_AND_BM25_FUSED",
+        "neural_top_matches" : 10,
+        "neural_total_matches" : 100,
+        "normalization_technique" : "DISTRIBUTION_BASED",
+        "normalization_combination_technique" : "ARITHMETIC_MEAN",
+        "neural_rank_window_size" : 60,
+        "neural_rank_constant" : 100,
+        "rerank_enabled" : false,
+        "rerank_first_stage_size" : 50,
+        "rerank_min_score" : 0.1
+      }
+    },
+    "paging_sort" : {
+      "from" : 20,
+      "size" : 5,
+      "q" : "star",
+      "sorts" : [ {
+        "field" : "year",
+        "order" : "desc"
+      }, {
+        "field" : "title",
+        "order" : "asc"
+      } ]
+    },
+    "fields_response_fields" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "star",
+      "fields" : [ "title", "overview" ],
+      "response_fields" : [ "title", "year", "genres" ]
+    },
+    "range_int_and_double" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "filters" : {
+        "all" : [ {
+          "search_type" : "range",
+          "field" : "year",
+          "condition" : {
+            "gte" : 1990,
+            "lte" : 1999
+          }
+        }, {
+          "search_type" : "range",
+          "field" : "rating",
+          "condition" : {
+            "gt" : 7.5,
+            "lt" : 10.0
+          }
+        }, {
+          "search_type" : "range",
+          "field" : "votes",
+          "condition" : {
+            "lte" : 100.0
+          }
+        } ]
+      }
+    },
+    "terms_required_and_excluded" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "filters" : {
+        "all" : [ {
+          "any" : [ {
+            "search_type" : "term",
+            "field" : "genre",
+            "value" : "Drama"
+          }, {
+            "search_type" : "term",
+            "field" : "genre",
+            "value" : "Comedy"
+          } ]
+        } ],
+        "not" : [ {
+          "search_type" : "term",
+          "field" : "genre",
+          "value" : "Horror"
+        }, {
+          "search_type" : "term",
+          "field" : "genre",
+          "value" : "Thriller"
+        } ]
+      }
+    },
+    "any_of" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "filters" : {
+        "all" : [ {
+          "any" : [ {
+            "search_type" : "term",
+            "field" : "a",
+            "value" : "1"
+          }, {
+            "search_type" : "term",
+            "field" : "b",
+            "value" : "2"
+          }, {
+            "search_type" : "term",
+            "field" : "b",
+            "value" : "3"
+          } ]
+        }, {
+          "any" : [ {
+            "search_type" : "exists",
+            "field" : "c"
+          } ]
+        } ]
+      }
+    },
+    "hybrid_rrf" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "ssapi_flags" : {
+        "neural_mode" : "A_KNN_AND_BM25",
+        "normalization_technique" : "RANK",
+        "normalization_combination_technique" : "RRF",
+        "neural_rank_window_size" : 10,
+        "neural_rank_constant" : 1
+      }
+    },
+    "hybrid_min_max" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "ssapi_flags" : {
+        "neural_mode" : "EXACT_AND_BM25_RANKING",
+        "normalization_technique" : "MIN_MAX",
+        "normalization_combination_technique" : "HARMONIC_MEAN",
+        "neural_top_matches" : 1,
+        "neural_total_matches" : 10000
+      }
+    },
+    "rerank_null_after_true" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x"
+    },
+    "rerank_null_only" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x"
+    },
+    "rerank_tuning" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "ssapi_flags" : {
+        "rerank_enabled" : true,
+        "rerank_first_stage_size" : 30,
+        "rerank_min_score" : 0.25
+      }
+    },
+    "aggs" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "aggs" : [ {
+        "type" : "terms",
+        "name" : "g",
+        "field" : "genres"
+      }, {
+        "type" : "terms",
+        "name" : "y",
+        "field" : "year",
+        "size" : 5
+      }, {
+        "type" : "cardinality",
+        "name" : "c",
+        "field" : "director"
+      }, {
+        "type" : "cardinality",
+        "name" : "c2",
+        "field" : "director",
+        "precisionThreshold" : 0
+      } ]
+    },
+    "flags_false" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "ssapi_flags" : {
+        "highlight_enabled" : false,
+        "wild_card_search" : false,
+        "auto_correct" : true,
+        "trim_query" : false,
+        "remove_special_chars" : false,
+        "precision" : 1
+      }
+    },
+    "boost_integral_weight" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "x",
+      "boosts" : [ {
+        "search_type" : "term",
+        "field" : "genre",
+        "value" : "Drama",
+        "weight" : 3.0
+      }, {
+        "search_type" : "term",
+        "field" : "genre",
+        "value" : "Comedy",
+        "weight" : 0.5
+      } ]
+    },
+    "trimmed_text" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "padded query",
+      "filters" : {
+        "all" : [ {
+          "search_type" : "term",
+          "field" : "genre",
+          "value" : "Drama"
+        } ]
+      }
+    },
+    "unicode" : {
+      "from" : 0,
+      "size" : 10,
+      "q" : "café ü中 \"quoted\" \\ back"
+    }
+  },
+  "workspace_requests" : {
+    "minimal" : {
+      "query" : "what is the refund policy",
+      "mode" : "retrieval_only",
+      "options" : {
+        "include_sources" : true,
+        "max_subqueries" : 4,
+        "max_iterations" : 4,
+        "max_context_documents" : 12,
+        "cache_policy" : "use_and_write"
+      }
+    },
+    "answer_full" : {
+      "query" : "q",
+      "mode" : "answer",
+      "options" : {
+        "output" : "compact",
+        "include_sources" : false,
+        "max_subqueries" : 2,
+        "max_iterations" : 3,
+        "max_context_documents" : 5,
+        "cache_policy" : "bypass"
+      },
+      "session_id" : "sess-1",
+      "agent_id" : "agent-1",
+      "source_ids" : [ "00000000-0000-4000-8000-000000000002" ],
+      "project_ids" : [ "p1" ],
+      "memory_mode" : "standard"
+    },
+    "filter_direct_term" : {
+      "query" : "q",
+      "mode" : "retrieval_only",
+      "filters" : {
+        "all" : [ {
+          "search_type" : "term",
+          "field" : "source_type",
+          "value" : "pdf"
+        } ]
+      },
+      "options" : {
+        "include_sources" : true,
+        "max_subqueries" : 4,
+        "max_iterations" : 4,
+        "max_context_documents" : 12,
+        "cache_policy" : "use_and_write"
+      }
+    },
+    "filter_all" : {
+      "query" : "q",
+      "mode" : "retrieval_only",
+      "filters" : {
+        "all" : [ {
+          "search_type" : "terms",
+          "field" : "metadata.team",
+          "valuess" : [ "a", "b" ]
+        }, {
+          "search_type" : "match_phrase",
+          "field" : "title",
+          "value" : "Refund Policy"
+        }, {
+          "search_type" : "range",
+          "field" : "published_at",
+          "gte" : "2025-01-01",
+          "lte" : "2026-01-01"
+        }, {
+          "search_type" : "match",
+          "field" : "content",
+          "value" : 5
+        } ]
+      },
+      "options" : {
+        "include_sources" : true,
+        "max_subqueries" : 4,
+        "max_iterations" : 4,
+        "max_context_documents" : 12,
+        "cache_policy" : "use_and_write"
+      }
+    },
+    "memory_agentic" : {
+      "query" : "q",
+      "mode" : "retrieval_only",
+      "options" : {
+        "include_sources" : true,
+        "max_subqueries" : 4,
+        "max_iterations" : 4,
+        "max_context_documents" : 12,
+        "cache_policy" : "use_and_write"
+      },
+      "memory_mode" : "agentic"
+    }
+  },
+  "workspace_other" : {
+    "member_canonical" : {
+      "role" : "MEMBER",
+      "principal_id" : "00000000-0000-4000-8000-000000000003"
+    },
+    "member_owner" : {
+      "role" : "OWNER",
+      "principal_id" : "00000000-0000-4000-8000-000000000003"
+    },
+    "member_legacy" : {
+      "role" : "MEMBER",
+      "user_id" : "user@example.com"
+    },
+    "grant" : {
+      "display_label" : "Label A",
+      "groups" : [ "g1" ],
+      "roles" : [ ],
+      "security_keys" : [ "k1", "k2" ],
+      "expected_revision" : 3
+    },
+    "grant_null_label" : {
+      "groups" : [ ],
+      "roles" : [ "r" ],
+      "security_keys" : [ ],
+      "expected_revision" : 0
+    }
+  },
+  "provisioning" : {
+    "upsert_users" : {
+      "scope" : {
+        "kind" : "TENANT",
+        "id" : "tenant-a"
+      },
+      "integration_id" : "integration-a",
+      "kind" : "UPSERT_USERS",
+      "items" : [ {
+        "item_key" : "item-1",
+        "external_user_id" : "ext-1",
+        "profile" : {
+          "email" : "u1@example.com",
+          "first_name" : "Ada"
+        },
+        "platform_role" : "GUEST",
+        "permissions" : [ "alpha", "zeta" ],
+        "workspaces" : [ {
+          "workspace_id" : "00000000-0000-4000-8000-000000000001",
+          "source_grants" : [ {
+            "source_id" : "00000000-0000-4000-8000-000000000002",
+            "expected_revision" : 2,
+            "grants" : {
+              "groups" : [ "g" ],
+              "roles" : [ ],
+              "security_keys" : [ "k" ]
+            }
+          } ]
+        } ]
+      }, {
+        "item_key" : "item-2",
+        "external_user_id" : "ext-2",
+        "profile" : {
+          "email" : "u2@example.com",
+          "display_name" : "U Two"
+        },
+        "platform_role" : "GUEST",
+        "permissions" : [ ],
+        "workspaces" : [ {
+          "workspace_id" : "00000000-0000-4000-8000-000000000001",
+          "expected_revision" : 7
+        } ],
+        "external_identity" : {
+          "subject" : "sub-2",
+          "username" : "user2"
+        }
+      } ]
+    },
+    "onboard_users" : {
+      "scope" : {
+        "kind" : "DEPLOYMENT",
+        "id" : "dep"
+      },
+      "integration_id" : "integration-a",
+      "kind" : "ONBOARD_USERS",
+      "items" : [ {
+        "item_key" : "item-1",
+        "external_user_id" : "ext-1",
+        "profile" : {
+          "email" : "u1@example.com",
+          "first_name" : "Ada"
+        },
+        "platform_role" : "GUEST",
+        "permissions" : [ "alpha", "zeta" ],
+        "workspaces" : [ {
+          "workspace_id" : "00000000-0000-4000-8000-000000000001",
+          "source_grants" : [ {
+            "source_id" : "00000000-0000-4000-8000-000000000002",
+            "expected_revision" : 2,
+            "grants" : {
+              "groups" : [ "g" ],
+              "roles" : [ ],
+              "security_keys" : [ "k" ]
+            }
+          } ]
+        } ]
+      } ]
+    },
+    "disable_users" : {
+      "scope" : {
+        "kind" : "TENANT",
+        "id" : "tenant-a"
+      },
+      "integration_id" : "integration-a",
+      "kind" : "DISABLE_USERS",
+      "items" : [ {
+        "item_key" : "d1",
+        "principal_id" : "00000000-0000-4000-8000-000000000003"
+      } ]
+    },
+    "set_memberships" : {
+      "scope" : {
+        "kind" : "TENANT",
+        "id" : "tenant-a"
+      },
+      "kind" : "SET_MEMBERSHIPS",
+      "items" : [ {
+        "item_key" : "a1",
+        "principal_id" : "00000000-0000-4000-8000-000000000003",
+        "workspaces" : [ {
+          "workspace_id" : "00000000-0000-4000-8000-000000000001",
+          "source_grants" : [ {
+            "source_id" : "00000000-0000-4000-8000-000000000002",
+            "expected_revision" : 2,
+            "grants" : {
+              "groups" : [ "g" ],
+              "roles" : [ ],
+              "security_keys" : [ "k" ]
+            }
+          } ]
+        } ]
+      } ]
+    },
+    "retry" : {
+      "item_keys" : [ "item-1", "item-2" ]
+    },
+    "snapshot_request" : {
+      "scope" : {
+        "kind" : "TENANT",
+        "id" : "tenant-a"
+      },
+      "integration_id" : "integration-a",
+      "workspace_ids" : [ "00000000-0000-4000-8000-000000000001", "00000000-0000-4000-8000-000000000002" ],
+      "generation" : 4,
+      "expected_count" : 3,
+      "content_digest" : "e1545dda281c0d806a9fad510adcad4ee4bf46009e247a631415144d92f5cef2"
+    },
+    "snapshot_rows" : [ {
+      "principal_id" : "00000000-0000-4000-8000-000000000003",
+      "workspace_id" : "00000000-0000-4000-8000-000000000002"
+    }, {
+      "principal_id" : "00000000-0000-4000-8000-000000000004",
+      "workspace_id" : "00000000-0000-4000-8000-000000000001"
+    }, {
+      "principal_id" : "00000000-0000-4000-8000-000000000003",
+      "workspace_id" : "00000000-0000-4000-8000-000000000001"
+    } ],
+    "snapshot_apply" : {
+      "expected_generation" : 4,
+      "preview_digest" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "digest_rows" : "e1545dda281c0d806a9fad510adcad4ee4bf46009e247a631415144d92f5cef2",
+    "digest_empty" : "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "http" : {
+    "search" : [ {
+      "method" : "POST",
+      "uri" : "/auth/realms/demo%20realm/protocol/openid-connect/token",
+      "headers" : {
+        "content-type" : "application/x-www-form-urlencoded",
+        "accept" : "text/plain, application/json, application/*+json, */*"
+      },
+      "body" : "grant_type=client_credentials&client_id=svc-client&client_secret=s3cr3t%2B%2F%3D%26x"
+    }, {
+      "method" : "POST",
+      "uri" : "/core/projects/movies%20project%2F1/search",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"from\":0,\"size\":10,\"q\":\"star wars\"}"
+    } ],
+    "search_by_usecase" : [ {
+      "method" : "POST",
+      "uri" : "/core/usecases/uc-1/search",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"from\":0,\"size\":3,\"q\":\"x\"}"
+    } ],
+    "multi_search" : [ {
+      "method" : "POST",
+      "uri" : "/core/projects/p*%7E1/mSearch",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "[{\"from\":0,\"size\":10,\"q\":\"a\"},{\"from\":10,\"size\":10,\"q\":\"b\"}]"
+    } ],
+    "workplace_search" : [ {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/search",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"query\":\"refunds\",\"mode\":\"retrieval_only\",\"options\":{\"include_sources\":true,\"max_subqueries\":4,\"max_iterations\":4,\"max_context_documents\":12,\"cache_policy\":\"use_and_write\"}}"
+    } ],
+    "workplace_query_ctx" : [ {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/query",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1",
+        "x-request-id" : "00000000-0000-4000-8000-000000000006"
+      },
+      "body" : "{\"query\":\"refunds\",\"mode\":\"answer\",\"options\":{\"include_sources\":true,\"max_subqueries\":4,\"max_iterations\":4,\"max_context_documents\":12,\"cache_policy\":\"use_and_write\"},\"session_id\":\"s0\"}"
+    } ],
+    "workplace_chat" : [ {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/chat",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"query\":\"refunds\",\"mode\":\"answer\",\"options\":{\"include_sources\":true,\"max_subqueries\":4,\"max_iterations\":4,\"max_context_documents\":12,\"cache_policy\":\"use_and_write\"},\"session_id\":\"s0\"}"
+    } ],
+    "workplace_stream_query" : [ {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/query",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "text/event-stream",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"query\":\"refunds\",\"mode\":\"answer\",\"options\":{\"include_sources\":true,\"max_subqueries\":4,\"max_iterations\":4,\"max_context_documents\":12,\"cache_policy\":\"use_and_write\",\"stream\":true},\"session_id\":\"s0\"}"
+    } ],
+    "workplace_stream_chat" : [ {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/chat",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "text/event-stream",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"query\":\"refunds\",\"mode\":\"answer\",\"options\":{\"include_sources\":true,\"max_subqueries\":4,\"max_iterations\":4,\"max_context_documents\":12,\"cache_policy\":\"use_and_write\",\"stream\":true},\"session_id\":\"s0\"}"
+    } ],
+    "list_members" : [ {
+      "method" : "GET",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/members",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "list_members_page" : [ {
+      "method" : "GET",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/members/page?query=ada%20lovelace%26x&page=2&size=50",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "list_members_page_null_query" : [ {
+      "method" : "GET",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/members/page?query=&page=0&size=1",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "add_member" : [ {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/members",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"role\":\"MEMBER\",\"principal_id\":\"00000000-0000-4000-8000-000000000003\"}"
+    } ],
+    "get_grant" : [ {
+      "method" : "GET",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/data-sources/00000000-0000-4000-8000-000000000002/principal-grants/00000000-0000-4000-8000-000000000003",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "put_grant" : [ {
+      "method" : "PUT",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/data-sources/00000000-0000-4000-8000-000000000002/principal-grants/00000000-0000-4000-8000-000000000003",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"groups\":[\"g\"],\"roles\":[],\"security_keys\":[],\"expected_revision\":1}"
+    } ],
+    "revoke_grant" : [ {
+      "method" : "DELETE",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/data-sources/00000000-0000-4000-8000-000000000002/principal-grants/00000000-0000-4000-8000-000000000003?expected_revision=5",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "capabilities" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/capabilities",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "submit_job" : [ {
+      "method" : "POST",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/jobs",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1",
+        "idempotency-key" : "idem-key-1"
+      },
+      "body" : "{\"scope\":{\"kind\":\"TENANT\",\"id\":\"t\"},\"integration_id\":\"integration-a\",\"kind\":\"DISABLE_USERS\",\"items\":[{\"item_key\":\"d1\",\"principal_id\":\"00000000-0000-4000-8000-000000000003\"}]}"
+    } ],
+    "get_job" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/jobs/00000000-0000-4000-8000-000000000004",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "list_job_items" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/jobs/00000000-0000-4000-8000-000000000004/items?limit=10&after=cursor%20a&state=FAILED",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "retry_job" : [ {
+      "method" : "POST",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/jobs/00000000-0000-4000-8000-000000000004/retry",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1",
+        "idempotency-key" : "idem-2"
+      },
+      "body" : "{\"item_keys\":[\"k\"]}"
+    } ],
+    "cancel_job" : [ {
+      "method" : "POST",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/jobs/00000000-0000-4000-8000-000000000004/cancel",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "list_principals" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/integrations/integration-a/principals?scope_kind=TENANT&scope_id=tenant%20a%2Fb&limit=25&after=after%2B1",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "list_principals_no_after" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/integrations/integration-a/principals?scope_kind=DEPLOYMENT&scope_id=d&limit=100",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "create_snapshot" : [ {
+      "method" : "POST",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/snapshots",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "{\"scope\":{\"kind\":\"TENANT\",\"id\":\"t\"},\"integration_id\":\"integration-a\",\"workspace_ids\":[\"00000000-0000-4000-8000-000000000001\"],\"generation\":1,\"expected_count\":1,\"content_digest\":\"d3525d8939ae6d661a393f7fdb132c3a8566bd1b10a0b770e12e363c0b06d412\"}"
+    } ],
+    "upload_snapshot_page" : [ {
+      "method" : "PUT",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/snapshots/00000000-0000-4000-8000-000000000005/pages/0",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : "[{\"principal_id\":\"00000000-0000-4000-8000-000000000003\",\"workspace_id\":\"00000000-0000-4000-8000-000000000001\"}]"
+    } ],
+    "seal_snapshot" : [ {
+      "method" : "POST",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/snapshots/00000000-0000-4000-8000-000000000005/seal",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "get_snapshot" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/snapshots/00000000-0000-4000-8000-000000000005",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "preview_snapshot" : [ {
+      "method" : "GET",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/snapshots/00000000-0000-4000-8000-000000000005/preview?after=0&limit=100",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1"
+      },
+      "body" : ""
+    } ],
+    "apply_snapshot" : [ {
+      "method" : "POST",
+      "uri" : "/admin-root/search-admin/api/provisioning/v1/snapshots/00000000-0000-4000-8000-000000000005/apply",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer svc-token-1",
+        "idempotency-key" : "idem-3"
+      },
+      "body" : "{\"expected_generation\":1,\"preview_digest\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}"
+    } ],
+    "as_user" : [ {
+      "method" : "POST",
+      "uri" : "/auth/realms/demo%20realm/protocol/openid-connect/token",
+      "headers" : {
+        "content-type" : "application/x-www-form-urlencoded",
+        "accept" : "application/json"
+      },
+      "body" : "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&client_id=svc-client&client_secret=s3cr3t%2B%2F%3D%26x&assertion=header.payload.sig"
+    }, {
+      "method" : "POST",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/search",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer user-token-1"
+      },
+      "body" : "{\"query\":\"mine\",\"mode\":\"retrieval_only\",\"options\":{\"include_sources\":true,\"max_subqueries\":4,\"max_iterations\":4,\"max_context_documents\":12,\"cache_policy\":\"use_and_write\"}}"
+    } ],
+    "as_user_from_token" : [ {
+      "method" : "POST",
+      "uri" : "/auth/realms/demo%20realm/protocol/openid-connect/token",
+      "headers" : {
+        "content-type" : "application/x-www-form-urlencoded",
+        "accept" : "application/json"
+      },
+      "body" : "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange&client_id=svc-client&client_secret=s3cr3t%2B%2F%3D%26x&subject_token=human.access.token&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token&requested_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token&audience=workspace-api&audience=cloud-gateway&audience=search-admin"
+    }, {
+      "method" : "GET",
+      "uri" : "/workspace/v1/workspaces/00000000-0000-4000-8000-000000000001/members",
+      "headers" : {
+        "content-type" : "application/json",
+        "accept" : "application/json",
+        "authorization" : "Bearer user-token-1"
+      },
+      "body" : ""
+    } ]
+  }
+}
