@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "smartsearch-ai"
-version = "0.1.0.dev0"
+dynamic = ["version"]
 description = "Python SDK for SmartSearch AI project search, Workplace and user provisioning"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -15,7 +15,7 @@ dependencies = [
     "pydantic>=2.6,<3",
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
@@ -29,7 +29,12 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/smartsearch-ai/smartsearch-ai-integration-examples"
+Homepage = "https://github.com/smartsearch-ai/smartsearch-ai-python"
+Repository = "https://github.com/smartsearch-ai/smartsearch-ai-python"
+Examples = "https://github.com/smartsearch-ai/smartsearch-ai-integration-examples"
+
+[tool.hatch.version]
+path = "src/smartsearch_ai/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/smartsearch_ai"]
